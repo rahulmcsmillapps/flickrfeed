@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
     defaultConfig {
-        applicationId "flickr.millapps.com.flickrfeed"
-        minSdkVersion 21
-        targetSdkVersion 23
+        applicationId "com.millapps.flickr"
+        minSdkVersion 23
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -17,6 +18,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    dexOptions {
+        javaMaxHeapSize = "4g"
+    }
+
 }
 
 dependencies {
@@ -24,6 +38,41 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    androidTestCompile 'com.google.code.findbugs:jsr305:3.0.1'
+
+    def supportVersion = '25.3.1'
+    compile "com.android.support:appcompat-v7:${supportVersion}"
+    compile "com.android.support:support-v4:${supportVersion}"
+    compile "com.android.support:recyclerview-v7:${supportVersion}"
+    compile "com.android.support:design:${supportVersion}"
+
+    //dagger 2
+    compile 'com.google.dagger:dagger:2.11'
+    compile 'com.google.dagger:dagger-android:2.11'
+    compile 'com.google.dagger:dagger-android-support:2.11'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+
+    // rxJava / rxAndroid
+    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    // Retrofit
+    def retrofitVersion = '2.3.0'
+    compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    compile "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+
+    // OkHttp
+    def okHttpVersion = '3.8.1'
+    compile "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+    compile "com.squareup.okhttp3:okhttp-urlconnection:${okHttpVersion}"
+
+    //Glide
+    def glideVersion = '4.0.0'
+    compile "com.github.bumptech.glide:glide:${glideVersion}"
+    compile "com.github.bumptech.glide:okhttp3-integration:${glideVersion}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${glideVersion}"
+
     testCompile 'junit:junit:4.12'
 }
