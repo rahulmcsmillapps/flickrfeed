@@ -7,6 +7,10 @@ public class Media {
     @SerializedName("m")
     private String mediaUrl;
 
+    public Media(String mediaUrl) {
+        this.mediaUrl = mediaUrl;
+    }
+
     public void setMediaUrl(String mediaUrl) {
         this.mediaUrl = mediaUrl;
     }

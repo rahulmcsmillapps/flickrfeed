@@ -15,6 +15,9 @@ public class PublicFeed {
     @SerializedName("items")
     private List<PublicFeedItem> items;
 
+    public PublicFeed() {
+    }
+
     public void setLink(String link) {
         this.link = link;
     }

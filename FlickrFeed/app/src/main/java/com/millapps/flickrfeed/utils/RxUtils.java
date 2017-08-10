@@ -2,11 +2,10 @@ package com.millapps.flickrfeed.utils;
 
 import android.util.Log;
 
-import com.millapps.flickrfeed.BuildConfig;
-
 import io.reactivex.ObservableTransformer;
 import io.reactivex.Scheduler;
 import io.reactivex.plugins.RxJavaPlugins;
+import timber.log.Timber;
 
 public class RxUtils {
     private static final String TAG = RxUtils.class.getName();
@@ -23,7 +22,7 @@ public class RxUtils {
      */
     public static void initRxJava2ErrorHandler() {
         RxJavaPlugins.setErrorHandler(throwable -> {
-            if (BuildConfig.DEBUG) Log.d(TAG, Log.getStackTraceString(throwable));
+            Timber.d(TAG, Log.getStackTraceString(throwable));
         });
     }
 

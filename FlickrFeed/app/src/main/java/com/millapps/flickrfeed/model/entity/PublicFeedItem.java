@@ -18,6 +18,9 @@ public class PublicFeedItem {
     @SerializedName("date_taken")
     private String dateTaken;
 
+    public PublicFeedItem() {
+    }
+
     public void setAuthor(String author) {
         this.author = author;
     }

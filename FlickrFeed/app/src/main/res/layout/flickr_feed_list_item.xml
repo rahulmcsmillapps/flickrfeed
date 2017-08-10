@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.millapps.flickrfeed.viewmodel.PublicFeedListItemViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/text_margin"
+            bind:imageUrl="@{viewModel.imageUrl}" />
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:text="@{viewModel.author}"
+            android:textAppearance="?attr/textAppearanceListItemSmall"
+            tools:text="Author" />
+
+        <TextView
+            android:id="@+id/dateTaken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:text="@{viewModel.dateTaken}"
+            android:textAppearance="?attr/textAppearanceListItemSmall"
+            tools:text="Date taken" />
+
+        <TextView
+            android:id="@+id/datePublished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:text="@{viewModel.datePublished}"
+            android:textAppearance="?attr/textAppearanceListItemSmall"
+            tools:text="Date Published" />
+    </LinearLayout>
+</layout>
