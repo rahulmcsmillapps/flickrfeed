@@ -87,10 +87,30 @@ public class PublicFeedListViewModelTest {
         verify(mockDataModel, times(1)).publicFeed();
         verifyPropertyChanged(BR.loading, times(2));
         verifyPropertyChanged(BR.syncTime, times(1));
+        verifyPropertyChanged(BR.showSyncError, times(1));
 
         assertEquals(viewModel.getLoading(), false);
         assertEquals(viewModel.getSyncTime(), MOCK_MODIFIED_DATE);
+        assertEquals(viewModel.getShowSyncError(), false);
     }
+
+    @Test
+    public void test_loadPublicFeed_Error() {
+        when(mockDataModel.publicFeed()).thenReturn(Observable.error(mock(Exception.class)));
+
+        viewModel.loadPublicFeed();
+
+        testScheduler.triggerActions();
+
+        verify(mockDataModel, times(1)).publicFeed();
+        verifyPropertyChanged(BR.loading, times(2));
+        verifyPropertyChanged(BR.showSyncError, times(1));
+
+        assertEquals(viewModel.getLoading(), false);
+        assertEquals(viewModel.getSyncTime(), null);
+        assertEquals(viewModel.getShowSyncError(), true);
+    }
+
 
     private final void verifyPropertyChanged(int propertyId, VerificationMode verificationMode) {
         verify(mockOnPropertyChangedCallback, verificationMode)

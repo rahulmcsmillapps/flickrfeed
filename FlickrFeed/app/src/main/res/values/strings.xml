@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Flickr Feed</string>
+    <string name="error_feed_sync">Error fetching feed from Flickr, you may be seeing a stale copy or nothing at all.</string>
 </resources>

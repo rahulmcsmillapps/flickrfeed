@@ -21,7 +21,6 @@ public class NetworkRestApi implements RestApi {
 
     private PublicFeedApiServiceImpl flickrApiService;
 
-
     @Inject
     public NetworkRestApi(Retrofit retrofit) {
         flickrApiService = retrofit.create(PublicFeedApiServiceImpl.class);

@@ -22,6 +22,7 @@ public class PublicFeedListViewModel extends BaseObservable {
     private static String TAG = PublicFeedListViewModel.class.getName();
     private PublicFeedListAdapter adapter;
     private boolean loading;
+    private boolean showSyncError;
     private PublicFeedDataModel dataModel;
     private Scheduler io, ui;
     private CompositeDisposable compositeDisposable;
@@ -50,17 +51,24 @@ public class PublicFeedListViewModel extends BaseObservable {
         return syncTime;
     }
 
+    @Bindable
+    public boolean getShowSyncError() {
+        return showSyncError;
+    }
+
     public void loadPublicFeed() {
         Disposable disposable = dataModel.publicFeed()
                 .doOnSubscribe(ignoredDisposable -> setLoading(true))
                 .doOnTerminate(() -> setLoading(false))
-                .compose(RxUtils.applyIOSchedulers(io, ui))
+                .compose(RxUtils.applyIOSchedulers(io, ui, true))
                 .subscribe(publicFeedItems -> {
                             Timber.d(TAG, "refreshing PublicFeedItems");
                             adapter.setData(publicFeedItems.getItems());
                             setSyncTime(publicFeedItems.getModified());
+                            setShowSyncError(false);
                         }, throwable -> {
                             Timber.d(TAG, throwable);
+                            setShowSyncError(true);
                         }
                 );
         compositeDisposable.add(disposable);
@@ -76,6 +84,11 @@ public class PublicFeedListViewModel extends BaseObservable {
             this.syncTime = syncTime;
             notifyPropertyChanged(BR.syncTime);
         }
+    }
+
+    private void setShowSyncError(boolean showSyncError) {
+        this.showSyncError = showSyncError;
+        notifyPropertyChanged(BR.showSyncError);
     }
 
 }

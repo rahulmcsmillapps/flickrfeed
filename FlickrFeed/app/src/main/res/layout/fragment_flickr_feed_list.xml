@@ -30,8 +30,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:subtitle="@{viewModel.syncTime}"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="@string/app_name">
-            </android.support.v7.widget.Toolbar>
+                app:title="@string/app_name"></android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -48,6 +47,7 @@
                 bind:adapter="@{viewModel.adapter}"
                 bind:divider="@{LinearLayout.VERTICAL}"
                 bind:layoutManager="android.support.v7.widget.StaggeredGridLayoutManager"
+                bind:syncErrorSnackBar="@{viewModel.showSyncError}"
                 tools:context="com.millapps.flickr.PublicFeedListActivity"
                 tools:listitem="@layout/flickr_feed_list_item" />
 

@@ -30,7 +30,6 @@ public class PublicFeedListFragment extends DaggerFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         FragmentFlickrFeedListBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_flickr_feed_list, container, false);
         binding.setViewModel(viewModel);
 
@@ -41,6 +40,7 @@ public class PublicFeedListFragment extends DaggerFragment {
     public void onResume() {
         super.onResume();
 
+        //refresh the Flickr feed
         viewModel.loadPublicFeed();
     }
 

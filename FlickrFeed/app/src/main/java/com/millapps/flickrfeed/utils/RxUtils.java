@@ -10,9 +10,9 @@ import timber.log.Timber;
 public class RxUtils {
     private static final String TAG = RxUtils.class.getName();
 
-    public static <T> ObservableTransformer<T, T> applyIOSchedulers(Scheduler io, Scheduler ui) {
+    public static <T> ObservableTransformer<T, T> applyIOSchedulers(Scheduler io, Scheduler ui, boolean delayError) {
         return observable -> observable.subscribeOn(io)
-                .observeOn(ui);
+                .observeOn(ui, delayError);
     }
 
     /**
