@@ -8,8 +8,8 @@ android:
     - tools
     - build-tools-26.0.0
     - android-23
-    - android-25
-    - sys-img-armeabi-v7a-android-22
+    - android-23
+    - sys-img-armeabi-v7a-android-23    
     - extra-android-m2repository
 
 before_script:
