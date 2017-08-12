@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/rahulmcsmillapps/flickrfeed.png?branch=master)](https://travis-ci.org/rahulmcsmillapps/flickrfeed)
 # Flickr Feed Android application
 
 Basic Implementation of the public Flickr Feed API allowing users to view the latest public feed. The app has been implemented using a reactive Model View ViewModel architecture (MVVM) and uses RxJava and DataBinding to achieve the same. The underlying module dependencies are managed using Dagger 2.
